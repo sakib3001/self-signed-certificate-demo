@@ -1,0 +1,16 @@
+## This is to create the self signed certificate 
+openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/ssl/private.key -out /etc/nginx/ssl/certificate.crt -days 365 -nodes -subj "/CN=server"
+
+
+
+## you must make the client trust of the self-signed certificate of the server else you will get an error
+## How to make the client trust the self-signed certificates
+## Ensure the certificate has a .crt extension.
+ -> sudo cp server.crt /usr/local/share/ca-certificates/server.crt
+## Update CA Certificates in the CA Store:
+
+update-ca-certificates
+
+
+
+

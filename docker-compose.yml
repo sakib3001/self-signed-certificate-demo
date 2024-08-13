@@ -1,0 +1,29 @@
+services:
+   server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: server  
+    container_name: server
+    networks: 
+       - secure-net
+    ports:
+       - "443:443"
+       - "80:80"
+    volumes:
+       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+   
+   
+   client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: client   
+    container_name: client 
+    networks:
+      - secure-net
+
+
+networks:
+   secure-net:
+     name: secure-net
